@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  oracle:
+    container_name: stockAlert
+    image: gvenzl/oracle-xe:18
+    ports:
+    - "1521:1521"
+    environment:
+      - ORACLE_PASSWORD=admin
+      - ORACLE_SID=XE
+
