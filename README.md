@@ -91,18 +91,5 @@ mvn test
 - [ ] Relatórios em PDF/Excel
 - [ ] Cadastro de usuários e permissões
 
-## 📄 Licença
-
-Este projeto está sob a licença [MIT](LICENSE).
-
-## 🙋‍♂️ Contribua
-
-Contribuições são bem-vindas! Basta:
-
-1. Fazer um fork do projeto
-2. Criar uma branch com sua feature
-3. Abrir um Pull Request com suas alterações
-
----
 
 Desenvolvido por [Wagner Henrique Camolez](https://github.com/henriquecamolez) 💼
