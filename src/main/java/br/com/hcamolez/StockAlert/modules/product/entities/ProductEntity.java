@@ -19,12 +19,10 @@ public class ProductEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_seq")
     @SequenceGenerator(name = "product_seq", sequenceName = "PRODUCT_SEQ", allocationSize = 1)
     private Long id;
-
     @NotBlank
     private String nomeProduto;
-
     private String marca;
-
+    private Long idMarca;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate dataFabricacao;
     @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd/MM/yyyy")
@@ -32,5 +30,6 @@ public class ProductEntity {
     @CreationTimestamp
     private LocalDateTime dataCadastro;
     private int lote;
+    private int qtde;
 
 }

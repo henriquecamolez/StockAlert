@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity(name="market")
-public class MarketEntities {
+public class MarketEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "market_seq")

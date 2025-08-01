@@ -1,14 +1,14 @@
 package br.com.hcamolez.StockAlert.modules.product.controllers;
 
 import br.com.hcamolez.StockAlert.modules.product.entities.ProductEntity;
+import br.com.hcamolez.StockAlert.modules.product.repositories.ProductRepository;
 import br.com.hcamolez.StockAlert.modules.product.useCases.ServiceCreateProduct;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/product")
@@ -16,6 +16,8 @@ public class ProductController {
 
     @Autowired
     private ServiceCreateProduct serviceCreateProduct;
+    @Autowired
+    private ProductRepository productRepository;
 
     @PostMapping("/")
     public ResponseEntity<Object> create(@Valid @RequestBody ProductEntity productEntity){
@@ -25,6 +27,10 @@ public class ProductController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+    }
+    @GetMapping("/")
+    public List<ProductEntity> showProducts(){
+        return  productRepository.findAll();
     }
 
 
