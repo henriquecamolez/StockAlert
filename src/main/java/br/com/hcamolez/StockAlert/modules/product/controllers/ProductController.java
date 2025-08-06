@@ -16,8 +16,7 @@ public class ProductController {
 
     @Autowired
     private ServiceCreateProduct serviceCreateProduct;
-    @Autowired
-    private ProductRepository productRepository;
+
 
     @PostMapping("/")
     public ResponseEntity<Object> create(@Valid @RequestBody ProductEntity productEntity){
@@ -29,8 +28,12 @@ public class ProductController {
         }
     }
     @GetMapping("/")
-    public List<ProductEntity> showProducts(){
-        return  productRepository.findAll();
+    public ResponseEntity<Object> showProducts(){
+        try{
+        var showProducts = serviceCreateProduct.findAll();
+        return ResponseEntity.ok().body(showProducts);} catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
 
