@@ -1,14 +1,15 @@
 package br.com.hcamolez.StockAlert.modules.product.controllers;
 
+
 import br.com.hcamolez.StockAlert.modules.product.entities.ProductEntity;
-import br.com.hcamolez.StockAlert.modules.product.repositories.ProductRepository;
+
 import br.com.hcamolez.StockAlert.modules.product.useCases.ServiceCreateProduct;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+
 
 @RestController
 @RequestMapping("/product")
