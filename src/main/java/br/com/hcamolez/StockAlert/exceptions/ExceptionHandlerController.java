@@ -1,5 +1,6 @@
 package br.com.hcamolez.StockAlert.exceptions;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
@@ -8,6 +9,8 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,4 +28,18 @@ public class ExceptionHandlerController {
        });
        return new ResponseEntity<>(dto, HttpStatus.BAD_REQUEST);
    }
+   @ExceptionHandler(DatabaseException.class)
+    public ResponseEntity<DatabaseErrorDTO> database(DatabaseException e, HttpServletRequest request) {
+        DatabaseErrorDTO databaseErrorDTO = new DatabaseErrorDTO();
+        HttpStatus status = HttpStatus.NOT_FOUND;
+        databaseErrorDTO.setTimestamp(Instant.from(LocalDateTime.from(Instant.now())));
+        databaseErrorDTO.setStatus(status.value());
+        databaseErrorDTO.setError("Database exception");
+        databaseErrorDTO.setMessage(e.getMessage());
+        databaseErrorDTO.setPath(request.getRequestURI());
+        return ResponseEntity.status(status).body(databaseErrorDTO);
+    }
+
+
+
 }

@@ -1,26 +1,29 @@
 package br.com.hcamolez.StockAlert.modules.product.dto;
 
-import br.com.hcamolez.StockAlert.modules.product.entities.ProductEntity;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
+
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class ProductDTO {
+    @Id
+    private Long id;
     private String nomeProduto;
     private String marca;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate dataFabricacao;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate dataVencimento;
     private int lote;
     private int qtde;
-
-    public ProductDTO(ProductEntity entity){
-        this.nomeProduto = entity.getNomeProduto();
-        this.lote = entity.getLote();
-
-
-    }
-
+    private LocalDateTime dataCadastro;
 
 }
