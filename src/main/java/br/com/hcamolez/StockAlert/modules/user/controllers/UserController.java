@@ -5,16 +5,19 @@ import br.com.hcamolez.StockAlert.modules.user.useCases.ServiceCreateUser;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/usuario")
+@RequestMapping("/users")
 public class UserController {
     @Autowired
     private ServiceCreateUser serviceCreateUser;
 
+
+    @GetMapping("/")
     public ResponseEntity<Object> execute(@Valid @RequestBody UserEntity userEntity){
         try {
             var message = this.serviceCreateUser.execute(userEntity);

@@ -21,13 +21,12 @@ public class ProductEntity {
     private Long id;
     @NotBlank
     private String nomeProduto;
-    private String marca;
-    private Long idMarca;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate dataFabricacao;
     @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd/MM/yyyy")
     private LocalDate dataVencimento;
     @CreationTimestamp
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd@HH:mm:ss.SSSZ")
     private LocalDateTime dataCadastro;
     private int lote;
     private int qtde;

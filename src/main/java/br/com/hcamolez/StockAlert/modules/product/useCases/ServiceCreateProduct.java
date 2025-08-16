@@ -3,9 +3,9 @@ package br.com.hcamolez.StockAlert.modules.product.useCases;
 
 import br.com.hcamolez.StockAlert.exceptions.DatabaseException;
 import br.com.hcamolez.StockAlert.exceptions.ProductFoundException;
+import br.com.hcamolez.StockAlert.modules.product.mapper.MapperProduct;
 import br.com.hcamolez.StockAlert.modules.product.dto.ProductDTO;
 import br.com.hcamolez.StockAlert.modules.product.entities.ProductEntity;
-import br.com.hcamolez.StockAlert.modules.product.map.ProductMapper;
 import br.com.hcamolez.StockAlert.modules.product.repositories.ProductRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
@@ -24,12 +24,12 @@ public class ServiceCreateProduct {
     @Autowired
     private ProductRepository productRepository;
     @Autowired
-    private ProductMapper productMapper;
+    private MapperProduct mapperProduct;
 
     @Transactional(readOnly = true)
     public Page<ProductDTO> findAllPaged(PageRequest pageRequest){
         Page<ProductEntity> pageEntity = productRepository.findAll(pageRequest);
-        return pageEntity.map(productMapper::toDto);
+        return pageEntity.map(mapperProduct::toDto);
 
     }
 
@@ -42,7 +42,7 @@ public class ServiceCreateProduct {
                .ifPresent(prd -> {
                   throw new ProductFoundException();
              });
-        productMapper.updateEntityFromDto(productDTO, productEntity);
+        mapperProduct.updateEntityFromDto(productDTO, productEntity);
        return  productEntity = productRepository.save(productEntity);
 
     }
@@ -51,7 +51,7 @@ public class ServiceCreateProduct {
     public ProductDTO findById(Long id) {
         Optional<ProductEntity> obj = productRepository.findById(id);
         ProductEntity productEntity = obj.orElseThrow(ProductFoundException::new);
-        return productMapper.toDto(productEntity);
+        return mapperProduct.toDto(productEntity);
 
     }
 
@@ -59,9 +59,9 @@ public class ServiceCreateProduct {
     public ProductDTO updatedById(Long id, ProductDTO productDTO) {
         try {
             ProductEntity productEntity = productRepository.getReferenceById(id);
-            productMapper.updateEntityFromDto(productDTO, productEntity);
+            mapperProduct.updateEntityFromDto(productDTO, productEntity);
             productEntity = productRepository.save(productEntity);
-            return productMapper.toDto(productEntity);
+            return mapperProduct.toDto(productEntity);
         } catch (EntityNotFoundException e) {
             throw new ProductFoundException();
         }
@@ -73,7 +73,7 @@ public class ServiceCreateProduct {
         } catch (EmptyResultDataAccessException e) {
             throw  new ProductFoundException();
         }catch (DataIntegrityViolationException e){
-            throw new DatabaseException("Integrity violation");
+            throw new DatabaseException("Integridade do banco violada");
         }
 
     }

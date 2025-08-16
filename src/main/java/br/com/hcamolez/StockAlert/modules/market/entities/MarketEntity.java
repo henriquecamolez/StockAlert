@@ -15,11 +15,11 @@ public class MarketEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "market_seq")
     @SequenceGenerator(name = "market_seq", sequenceName = "MARKET_SEQ", allocationSize = 1)
-    private Long idMercado;
+    private Long id;
     @NotBlank
     private String nomeMercado;
     @NotBlank
-    private String localizacao;
+    private String endereco;
     @CreationTimestamp
     private LocalDateTime dataCadastro;
 

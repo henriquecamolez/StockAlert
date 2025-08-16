@@ -17,13 +17,13 @@ public class ProductDTO {
     @Id
     private Long id;
     private String nomeProduto;
-    private String marca;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate dataFabricacao;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate dataVencimento;
     private int lote;
     private int qtde;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd@HH:mm:ss.SSSZ")
     private LocalDateTime dataCadastro;
 
 }

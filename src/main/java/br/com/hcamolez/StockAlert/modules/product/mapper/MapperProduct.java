@@ -1,4 +1,4 @@
-package br.com.hcamolez.StockAlert.modules.product.map;
+package br.com.hcamolez.StockAlert.modules.product.mapper;
 
 import br.com.hcamolez.StockAlert.modules.product.dto.ProductDTO;
 import br.com.hcamolez.StockAlert.modules.product.entities.ProductEntity;
@@ -10,7 +10,7 @@ import org.mapstruct.MappingTarget;
 
 
 @Mapper(componentModel = "spring")
-public interface ProductMapper {
+public interface MapperProduct {
     @Mapping(target = "id", ignore = true)
     void updateEntityFromDto(ProductDTO productDTO, @MappingTarget ProductEntity productEntity);
     ProductDTO toDto(ProductEntity productEntity);
