@@ -20,6 +20,7 @@ import java.util.Optional;
 public class ServiceCreateMarket {
     @Autowired
     private MarketRepository marketRepository;
+    @Autowired
     private MapperMarket mapperMarket;
 
 

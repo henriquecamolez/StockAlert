@@ -37,11 +37,6 @@ public class ServiceCreateProduct {
     public ProductEntity execute(@Valid ProductDTO productDTO){
 
         ProductEntity productEntity = new ProductEntity();
-
-       this.productRepository.findByLote(productDTO.getLote())
-               .ifPresent(prd -> {
-                  throw new ProductFoundException();
-             });
         mapperProduct.updateEntityFromDto(productDTO, productEntity);
        return  productEntity = productRepository.save(productEntity);
 
