@@ -11,20 +11,6 @@ import org.hibernate.validator.constraints.Length;
 @Entity(name = "usuario")
 public class UserEntity {
     @Id
-<<<<<<< HEAD
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
-    @SequenceGenerator(name = "user_seq", sequenceName = "USER_SEQ", allocationSize = 1)
-    private Long id;
-    @NotBlank()
-    @Pattern(regexp = "\\S+", message = "O campo [NomeUsuario] não deve conter espaços")
-    private String nomeUsuario;
-    private String nome;
-    @Email(message = "Digite um endereço de email valido!")
-    private String email;
-    @Length(min = 8, max = 15)
-    private String senha;
-    private String grupoUsuario;
-=======
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank
@@ -37,6 +23,4 @@ public class UserEntity {
     @Length(min = 8, max = 15)
     @NotBlank
     private String senha;
->>>>>>> master
-
 }
