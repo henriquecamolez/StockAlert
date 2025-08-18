@@ -23,7 +23,11 @@ public class MarketEntity {
     @NotBlank
     private String endereco;
     @CreationTimestamp
+<<<<<<< HEAD
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd@HH:mm:ss")
+=======
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy@HH:mm:ss")
+>>>>>>> master
     private LocalDateTime dataCadastro;
 
 }
