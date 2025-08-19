@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.*;
         }
 
         @GetMapping("/")
-        public ResponseEntity<Page<AlertDTO>> showMarket(
+        public ResponseEntity<Page<AlertDTO>> showAlert(
                 @RequestParam(value = "page", defaultValue = "0") Integer page,
                 @RequestParam(value = "linesPerPage", defaultValue = "12") Integer linesPerPage,
                 @RequestParam(value = "orderBy", defaultValue = "id") String orderBy,
@@ -38,7 +38,7 @@ import org.springframework.web.bind.annotation.*;
             return ResponseEntity.ok().body(paged);
         }
 
-        public ResponseEntity<Object> marketById(@PathVariable long id){
+        public ResponseEntity<Object> alertById(@PathVariable long id){
             try {
                 AlertDTO alertDTO = serviceCreateAlert.findById(id);
                 return  ResponseEntity.ok().body(alertDTO);
@@ -49,7 +49,7 @@ import org.springframework.web.bind.annotation.*;
         }
 
         @PutMapping("/{id}")
-        public ResponseEntity<Object> updateMarketById(@PathVariable Long id, @RequestBody AlertDTO alertDTO){
+        public ResponseEntity<Object> updateAlertById(@PathVariable Long id, @RequestBody AlertDTO alertDTO){
             alertDTO = serviceCreateAlert.updateById(id,alertDTO);
             return  ResponseEntity.ok().body(alertDTO);
 

@@ -1,6 +1,7 @@
 package br.com.hcamolez.StockAlert.modules.market.entities;
 
 
+import br.com.hcamolez.StockAlert.modules.product.entities.ProductEntity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -8,6 +9,8 @@ import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity(name="market")
@@ -25,5 +28,4 @@ public class MarketEntity {
     @CreationTimestamp
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy@HH:mm:ss")
     private LocalDateTime dataCadastro;
-
 }

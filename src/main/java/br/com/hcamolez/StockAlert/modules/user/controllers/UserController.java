@@ -27,7 +27,7 @@ public class UserController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<Page<UserDTO>> showMarket(
+    public ResponseEntity<Page<UserDTO>> showUser(
             @RequestParam(value = "page", defaultValue = "0") Integer page,
             @RequestParam(value = "linesPerPage", defaultValue = "12") Integer linesPerPage,
             @RequestParam(value = "orderBy", defaultValue = "id") String orderBy,
@@ -38,7 +38,7 @@ public class UserController {
         return ResponseEntity.ok().body(paged);
     }
 
-    public ResponseEntity<Object> marketById(@PathVariable long id){
+    public ResponseEntity<Object> userById(@PathVariable long id){
         try {
             UserDTO UserDTO = serviceCreateUser.findById(id);
             return  ResponseEntity.ok().body(UserDTO);
@@ -49,7 +49,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> updateMarketById(@PathVariable Long id, @RequestBody UserDTO UserDTO){
+    public ResponseEntity<Object> updateUserById(@PathVariable Long id, @RequestBody UserDTO UserDTO){
         UserDTO = serviceCreateUser.updateById(id,UserDTO);
         return  ResponseEntity.ok().body(UserDTO);
 

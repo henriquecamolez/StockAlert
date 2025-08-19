@@ -1,9 +1,8 @@
 package br.com.hcamolez.StockAlert.modules.alert.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import br.com.hcamolez.StockAlert.modules.product.entities.ProductEntity;
+import br.com.hcamolez.StockAlert.modules.user.entities.UserEntity;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -15,8 +14,16 @@ public class AlertEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Long id;
-    @NotBlank
     private int dias_antecedencia;
     @CreationTimestamp
     private LocalDate dataEmissao ;
+
+    @ManyToOne
+    @JoinColumn(name = "idUsuario")
+    private UserEntity usuario;
+
+
+    @ManyToOne
+    @JoinColumn(name = "idProduto", nullable = false)
+    private ProductEntity produto;
 }

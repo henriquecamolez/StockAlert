@@ -3,6 +3,8 @@ package br.com.hcamolez.StockAlert.modules.product.entities;
 
 import br.com.hcamolez.StockAlert.modules.market.entities.MarketEntity;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;

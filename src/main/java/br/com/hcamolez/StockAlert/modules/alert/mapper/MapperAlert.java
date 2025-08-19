@@ -8,6 +8,7 @@ import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring")
 public interface MapperAlert {
+
     @Mapping(target = "id", ignore = true)
     void targetEntityFromDTO(AlertDTO alertDTO, @MappingTarget AlertEntity alert);
     AlertDTO toDTO(AlertEntity alertEntity);
