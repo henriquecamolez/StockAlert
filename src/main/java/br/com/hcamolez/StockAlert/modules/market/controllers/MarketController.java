@@ -6,6 +6,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,14 +31,9 @@ public class MarketController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<Page<MarketDTO>> showMarket(
-            @RequestParam(value = "page", defaultValue = "0") Integer page,
-            @RequestParam(value = "linesPerPage", defaultValue = "12") Integer linesPerPage,
-            @RequestParam(value = "orderBy", defaultValue = "id") String orderBy,
-            @RequestParam(value = "direction", defaultValue = "DESC") String direction
-    ){
-        PageRequest pageRequest = PageRequest.of(page,linesPerPage, Sort.Direction.valueOf(direction), orderBy);
-        Page<MarketDTO> paged = serviceCreateMarket.findAllPaged(pageRequest);
+    public ResponseEntity<Page<MarketDTO>> showMarket(Pageable pageable){
+
+        Page<MarketDTO> paged = serviceCreateMarket.findAllPaged(pageable);
         return ResponseEntity.ok().body(paged);
     }
 

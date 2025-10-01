@@ -12,6 +12,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,8 +34,8 @@ public class ServiceCreateAlert {
     }
 
     @Transactional(readOnly = true)
-    public Page<AlertDTO> findAllPaged(PageRequest pageRequest){
-        Page<AlertEntity> pageEntity = alertRepository.findAll(pageRequest);
+    public Page<AlertDTO> findAllPaged(Pageable pageable){
+        Page<AlertEntity> pageEntity = alertRepository.findAll(pageable);
         return pageEntity.map(MapperAlert::toDTO);
     }
 
